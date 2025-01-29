@@ -1,4 +1,4 @@
-# Javascript-Projects
+# Basic ---> Advance ~~~ [Projects]
 
 📂✨ This repository features a collection of projects built with HTML, CSS, and JavaScript 🌐. Projects range from beginner-friendly 👶 to advanced-level 💡 to help you sharpen your front-end development skills!
 
