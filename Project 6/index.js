@@ -1,22 +1,21 @@
-const curserEl = document.querySelector(".cursor");
-var timeout;
+const btnEl = document.querySelector(".btn");
+const jokeEl = document.querySelector(".joke");
+const categoryEl = document.querySelector(".category");
 
-document.addEventListener("mousemove",movement);
+var URL = "https://v2.jokeapi.dev/joke/Any?type=single&amount=1";
 
-function movement(e){
-   console.log("moving")
-        let x = e.pageX;
-        let y = e.pageY;
-        curserEl.style.left = x + "px";
-        curserEl.style.top = y + "px";
-        curserEl.style.display = "block"
+btnEl.addEventListener("click",getMethod);
 
-        clearTimeout(timeout)
-        timeout = setTimeout(() => {
-        curserEl.style.display = "none"
-        }, 2000);
-}
-
-document.addEventListener("mouseout",()=>{
-    curserEl.style.display = "none"
-})
+async function getMethod(){
+    categoryEl.classList.remove("effect");
+    jokeEl.classList.remove("effect");
+        const data = await fetch(URL).then((e)=>
+            e.json());
+        if(data){
+            console.log(data);
+            categoryEl.innerHTML =`Category: ${data.category}`;
+            categoryEl.classList.add("effect");
+            jokeEl.innerHTML = data.joke;
+            jokeEl.classList.add("effect");
+        }
+    }
