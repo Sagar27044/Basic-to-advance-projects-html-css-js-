@@ -1,11 +1,42 @@
-// Check out below repository for more information about this Typed.js 
-// (Github repo-->Readme.md-->Customization)
+const rollButtonEl = document.querySelector(".rollButton");
 
-// https://github.com/mattboldt/typed.js/
+const diceEl = document.querySelector(".dice");
 
-var typed = new Typed(".text-type",{
-    strings: ["Web Developer","Programmer","Open Source Contributor","Youtuber"],
-    typeSpeed: 150,
-    backSpeed: 150,
-    loop : true
+const rollHistoryEl = document.querySelector(".rollHistory")
+
+let count = 1;
+
+rollButtonEl.addEventListener("click",()=>{
+    diceEl.classList.add("dice-rolling");
+    setTimeout(() => {
+    diceEl.classList.remove("dice-rolling");
+    rollDice();
+    }, 1000);
 })
+
+function rollDice(){
+    const rollResult = Math.ceil(Math.random()*6);
+    const diceFace = getDiceFace(rollResult);
+    diceEl.innerHTML = diceFace;
+    const liEl = document.createElement("li");
+    liEl.innerHTML = `Roll ${count}: <span>${diceFace}</span>`;
+    rollHistoryEl.appendChild(liEl);
+    count++;
+}
+
+function getDiceFace(rollResult){
+    switch(rollResult){
+        case 1:
+            return "&#9856";
+        case 2:
+            return "&#9857";
+        case 3:
+            return "&#9858";
+        case 4:
+            return "&#9859";
+        case 5:
+            return "&#9860";
+        case 6:
+            return "&#9861";
+    }
+}
